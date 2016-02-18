@@ -1,0 +1,5 @@
+- name: Configure Minecraft Server
+  hosts: mc
+  user: root
+  roles:
+    - minecraft
