@@ -1,0 +1,40 @@
+---
+
+- name: Download Minecraft software
+  get_url: url='http://overviewer.org/builds/deb64/1/overviewer-0.12.93.deb' dest='/tmp/'
+
+- name: Install Overviewer repo
+  apt: deb='/tmp/overviewer-0.12.93.deb'
+
+- name: Delete overviewer deb file
+  file: path=/tmp/overviewer-0.12.93.deb state=absent
+
+- name: Install Overviewer
+  apt: name=Minecraft-Overviewer state=installed
+
+- name: Install Apache servers
+  apt: name=apache2 state=installed
+
+- name: Create overviewer group
+  group: name=overviewer
+
+- name: Create overviewer user
+  user: name=overviewer comment="minecraft overviwer user" group=overviewer
+
+- name: Copy Overviewer Configuration
+  copy: src=overviewer.cfg dest=/home/overviewer/overviewer.cfg owner=overviewer group=overviewer
+
+- name: Copy overviewer script
+  template: src=copyworld.sh dest=/home/overviewer/copyworld.sh owner=overviewer group=overviewer
+
+- name: create data directory
+  file: path=/home/overviewer/data state=directory mode=0755 owner=overviewer group=overviewer
+
+- name: create render directory
+  file: path=/home/overviewer/render state=directory mode=0755 owner=overviewer group=overviewer
+
+- name: create .minecraft directory
+  file: path=/home/overviewer/.minecraft/versions/1.8.9 state=directory mode=0755 owner=overviewer group=overviewer
+
+- name: Download map textures
+  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/1.8.9/1.8.9.jar' dest='/home/overviewer/.minecraft/versions/1.8.9/1.8.9.jar'
