@@ -1,0 +1,22 @@
+---
+
+minecraft:
+  java_max_heap_size: '512M'
+  java_max_heap_newsize: '100M'
+  dependencies:
+    - 'openjdk-7-jre'
+    - 'openjdk-7-jdk'
+
+config:
+  cluster_name: 'MyCluster'
+  node_name: 'mc-node'
+
+web_opts:
+  dfw_node:
+    region: "DFW"
+    node_count: 1
+
+cluster_opts:
+  dfw_cluster:
+    region: "DFW"
+    node_count: 1

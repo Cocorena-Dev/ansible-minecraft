@@ -1,0 +1,37 @@
+---
+
+- name: Create Minecraft group
+  group: name=minecraft
+
+- name: Create Minecraft user
+  user: name=minecraft comment="minecraft user" group=minecraft
+
+- name: Create Minecraft application directory
+  file: path=/home/minecraft/app state=directory owner=minecraft group=minecraft state=directory
+
+- name: Download Minecraft software
+  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/1.8.9/minecraft_server.1.8.9.jar' dest='/home/minecraft/app'
+
+- name: Accept Minecraft EULA
+  copy: src=eula.txt dest=/home/minecraft/app/eula.txt owner=minecraft group=minecraft
+
+- name: Server Properties
+  copy: src=server.properties dest=/home/minecraft/app/server.properties owner=minecraft group=minecraft
+
+- name: Add banned-ips list
+  copy: src=banned-ips.json dest=/home/minecraft/app/banned-ips.json owner=minecraft group=minecraft
+
+- name: Add banned-players list
+  copy: src=banned-players.json dest=/home/minecraft/app/banned-players.json owner=minecraft group=minecraft
+
+- name: Add ops list
+  copy: src=ops.json dest=/home/minecraft/app/ops.json owner=minecraft group=minecraft
+
+- name: Add whitelist
+  copy: src=whitelist.json dest=/home/minecraft/app/whitelist.json owner=minecraft group=minecraft
+
+- name: Install Minecraft systemd script
+  copy: src=minecraft.service dest=/etc/systemd/system/minecraft.service owner=root group=root mode=0644
+
+- name: make sure Minecraft is running and enabled
+  service: name=minecraft state=running enabled=yes

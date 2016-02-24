@@ -1,0 +1,4 @@
+---
+
+- name: install mumble server
+  apt: name=mumble-server state=installed

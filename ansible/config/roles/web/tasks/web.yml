@@ -1,0 +1,13 @@
+---
+
+- name: Install nginx server
+  apt: name=nginx state=installed
+
+- name: Configure nginx server
+  copy: src=nginx.conf dest=/etc/nginx/sites-enabled/default
+
+- name: Add full render configuration
+  copy: src=nginx-full.conf dest=/etc/nginx/sites-enabled/mcmapfull
+
+- name: restart nginx server
+  service: name=nginx state=restarted
