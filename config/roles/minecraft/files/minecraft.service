@@ -5,9 +5,9 @@ Description=Minecraft Server
 WorkingDirectory=/home/minecraft/app
 User=minecraft
 
-ExecStart=/usr/bin/java -Xmx3056M -Xms3056M -jar /home/minecraft/app/minecraft_server.1.8.9.jar nogui
+ExecStart=/usr/bin/java -Xmx3056M -Xms3056M -jar /home/minecraft/app/minecraft_server.1.9.jar nogui
 
-ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java -Xmx3056M -Xms3056M -jar /home/minecraft/app/minecraft_server.1.8.9.jar nogui
+ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java -Xmx3056M -Xms3056M -jar /home/minecraft/app/minecraft_server.1.9.jar nogui
 
 ExecStop=/bin/kill -HUP $MAINPID
 RestartSec=10s

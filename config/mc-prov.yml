@@ -32,5 +32,4 @@
         ansible_ssh_host: "{{ item.rax_accessipv4 }}"
         ansible_ssh_pass: "{{ item.rax_adminpass }} "
         group: mc
-      with_items: rax.success
       when: rax.action == 'create'

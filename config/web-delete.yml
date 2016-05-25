@@ -1,4 +1,4 @@
-- name: Build Minecraft Map Node
+- name: Delete Minecraft Map Node
   gather_facts: False
   connection: local
   hosts: localhost

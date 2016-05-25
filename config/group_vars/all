@@ -20,6 +20,9 @@ web_opts:
     node_count: 1
 
 minecraft_opts:
+  java_min: "1024"
+  java_max: "1024"
+  version: "1.9.4"
   dfw_cluster:
     region: "DFW"
     node_count: 1
