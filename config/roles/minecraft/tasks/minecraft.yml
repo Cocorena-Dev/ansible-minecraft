@@ -10,7 +10,7 @@
   file: path=/home/minecraft/app state=directory owner=minecraft group=minecraft state=directory
 
 - name: Download Minecraft software
-  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/1.8.9/minecraft_server.1.8.9.jar' dest='/home/minecraft/app'
+  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_opts.version }}/minecraft_server.{{ minecraft_opts.version }}.jar' dest='/home/minecraft/app'
 
 - name: Accept Minecraft EULA
   copy: src=eula.txt dest=/home/minecraft/app/eula.txt owner=minecraft group=minecraft
@@ -31,7 +31,7 @@
   copy: src=whitelist.json dest=/home/minecraft/app/whitelist.json owner=minecraft group=minecraft
 
 - name: Install Minecraft systemd script
-  copy: src=minecraft.service dest=/etc/systemd/system/minecraft.service owner=root group=root mode=0644
+  template: src=minecraft.service.j2 dest=/etc/systemd/system/minecraft.service owner=root group=root mode=0644
 
 - name: make sure Minecraft is running and enabled
   service: name=minecraft state=running enabled=yes
