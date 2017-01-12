@@ -22,7 +22,7 @@ web_opts:
 minecraft_opts:
   java_min: "1024"
   java_max: "1024"
-  version: "1.10.2"
+  version: "1.11.2"
   dfw_cluster:
     region: "DFW"
     node_count: 1

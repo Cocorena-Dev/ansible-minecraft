@@ -1,6 +1,7 @@
 ---
 
 minecraft:
+  version: '1.11.2'
   java_max_heap_size: '512M'
   java_max_heap_newsize: '100M'
   dependencies:

@@ -11,6 +11,9 @@
 - name: Configure Vim as default
   shell: update-alternatives --set editor /usr/bin/vim.basic
 
+- name: Install unzip
+  apt: name=unzip state=installed
+
 - name: copy firewall config
   template: src=ufw.j2 dest=/root/ufw.sh
 
