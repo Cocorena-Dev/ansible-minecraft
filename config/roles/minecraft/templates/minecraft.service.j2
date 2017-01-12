@@ -1,0 +1,18 @@
+[Unit]
+Description=Minecraft Server
+
+[Service]
+WorkingDirectory=/home/minecraft/app
+User=minecraft
+
+ExecStart=/usr/bin/java -server -XX:ParallelGCThreads=4 -XX:+AggressiveOpts -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx2048M -Xms2048M -jar /home/minecraft/app/minecraft_server.1.11.2.jar nogui
+
+ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx2048M -Xms2048M -jar /home/minecraft/app/minecraft_server.1.11.2.jar nogui
+
+ExecStop=/bin/kill -HUP $MAINPID
+RestartSec=10s
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -4,8 +4,8 @@ minecraft:
   java_max_heap_size: '512M'
   java_max_heap_newsize: '100M'
   dependencies:
-    - 'openjdk-7-jre'
-    - 'openjdk-7-jdk'
+    - 'openjdk-8-jre'
+    - 'openjdk-8-jdk'
 
 config:
   cluster_name: 'MyCluster'
@@ -22,7 +22,7 @@ web_opts:
 minecraft_opts:
   java_min: "1024"
   java_max: "1024"
-  version: "1.9.4"
+  version: "1.11.2"
   dfw_cluster:
     region: "DFW"
     node_count: 1

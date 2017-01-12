@@ -10,7 +10,7 @@
         name: "{{ webconfig.node_name }}-{{ item.value.region }}-%02d"
         exact_count: yes
         flavor: performance1-1
-        image: ubuntu-1510-wily-werewolf-pvhvm
+        image: ubuntu-1604-lts-xenial-xerus-pvhvm
         region: "{{ item.value.region }}"
         wait: yes
         state: present
@@ -32,5 +32,4 @@
         ansible_ssh_host: "{{ item.rax_accessipv4 }}"
         ansible_ssh_pass: "{{ item.rax_adminpass }} "
         group: web
-      with_items: rax.success
       when: rax.action == 'create'

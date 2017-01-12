@@ -8,6 +8,6 @@ bkup = b.compress_dir('../data/world', '/home/overviewer/data')
 #upload compressed file
 filepath = bkup[1]
 b.cloud_connect()
-b.upload_file(file_path, 'mcbackups', 'DFW')
+b.upload_file(filepath, 'mcbackups', 'DFW')
 
 #cleanup rooutine

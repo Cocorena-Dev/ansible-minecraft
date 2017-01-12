@@ -17,4 +17,4 @@
   apt: name=mysql-server state=latest
 
 - name: install php5-fpm
-  apt: name=php5-fpm state=latest
+  apt: name=php-fpm state=latest

@@ -9,6 +9,12 @@
 - name: install python-dateutil
   apt: name=python-dateutil state=latest
 
+- name: install python-pip
+  apt: name=python-pip state=latest
+
+- name: install libssl-dev
+  apt: name=libssl-dev state=latest
+
 - name: Install pip module
   pip: name=pip state=latest
 
