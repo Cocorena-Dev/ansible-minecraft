@@ -5,7 +5,7 @@
 ansible-playbook config/web-prov.yml -f 20
 
 #configure nodes
-ansible-playbook -i scripts/rax.py config/web-config.yml -f 20
+ansible-playbook -i scripts/rax.py config/web-config.yml -f 20 --skip-tags "fullrender, quickrender"
 
 #ping them
 ansible -vvvv -u root -i scripts/rax.py web -m ping -f 20

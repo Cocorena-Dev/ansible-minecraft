@@ -1,0 +1,13 @@
+---
+
+- name: Run quickrender script
+  command: /home/overviewer/quickrender.sh
+  remote_user: overviewer
+  tags:
+    - quickrender
+
+- name: Run Fullrender Script
+  command: /home/overviewer/fullrender.sh
+  remote_user: overviewer
+  tags:
+    - fullrender

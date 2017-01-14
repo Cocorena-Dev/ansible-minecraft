@@ -1,6 +1,7 @@
 ---
 
 minecraft:
+  version: "1.11.2"
   java_max_heap_size: '512M'
   java_max_heap_newsize: '100M'
   dependencies:
@@ -15,14 +16,11 @@ webconfig:
   node_name: 'web-node'
 
 web_opts:
-  dfw_node:
-    region: "DFW"
-    node_count: 1
+  region: "DFW"
+  node_count: 1
 
 minecraft_opts:
   java_min: "1024"
   java_max: "1024"
-  version: "1.11.2"
-  dfw_cluster:
-    region: "DFW"
-    node_count: 1
+  region: "DFW"
+  node_count: 1
