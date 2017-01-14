@@ -16,10 +16,10 @@
   file: path=/home/overviewer/render state=directory mode=0755 owner=overviewer group=overviewer
 
 - name: create .minecraft directory
-  file: path=/home/overviewer/.minecraft/versions/1.10.2 state=directory mode=0755 owner=overviewer group=overviewer
+  file: path=/home/overviewer/.minecraft/versions/{{ minecraft.version }} state=directory mode=0755 owner=overviewer group=overviewer
 
 - name: Download map textures
-  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/1.10.2/1.10.2.jar' dest='/home/overviewer/.minecraft/versions/1.10.2/1.10.2.jar'
+  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft.version }}/{{ minecraft.version }}.jar' dest='/home/overviewer/.minecraft/versions/{{ minecraft.version }}/{{ minecraft.version }}.jar'
 
 - name: Install Overviewer repo
   apt: deb='/tmp/overviewer-0.12.93.deb'
@@ -32,3 +32,21 @@
 
 - name: Copy Overviewer Configuration
   copy: src=overviewer.cfg dest=/home/overviewer/overviewer.cfg owner=overviewer group=overviewer
+
+- name: Copy Overviewer full render Configuration
+  copy: src=overviewer-full.cfg dest=/home/overviewer/overviewer-full.cfg owner=overviewer group=overviewer
+
+- name: Copy overviewer full script
+  template: src=fullrender.sh dest=/home/overviewer/fullrender.sh owner=overviewer group=overviewer mode=0755
+
+- name: Copy overviewer script
+  template: src=quickrender.sh dest=/home/overviewer/quickrender.sh owner=overviewer group=overviewer mode=0755
+
+- name: create .ssh directory for overviewer user
+  file: path=/home/overviewer/.ssh mode=0755 owner=overviewer group=overviewer state=directory
+
+- name: copy ssh key for overviewer user
+  copy: src=minecraft.key dest=/home/overviewer/.ssh/id_rsa owner=overviewer group=overviewer mode=700
+
+- name: add authorized_keys file to overviewer user
+  copy: src=authorized_keys dest=/home/overviewer/.ssh/authorized_keys owner=overviewer group=overviewer mode=600

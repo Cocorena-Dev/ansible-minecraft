@@ -10,7 +10,7 @@
   file: path=/home/minecraft/app state=directory owner=minecraft group=minecraft state=directory
 
 - name: Download Minecraft software
-  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_opts.version }}/minecraft_server.{{ minecraft_opts.version }}.jar' dest='/home/minecraft/app'
+  get_url: url='https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft.version }}/minecraft_server.{{ minecraft.version }}.jar' dest='/home/minecraft/app'
 
 - name: Accept Minecraft EULA
   copy: src=eula.txt dest=/home/minecraft/app/eula.txt owner=minecraft group=minecraft
@@ -35,3 +35,23 @@
 
 - name: make sure Minecraft is running and enabled
   service: name=minecraft state=running enabled=yes
+
+- name: Add SSH key to /home/minecraft/.ssh/authorized_keys
+  copy: src=minecraft.pub dest=/home/minecraft/.ssh/authorized_keys owner=minecraft group=minecraft mode=600
+
+- name: Install nginx server
+  apt: name=nginx state=installed
+
+- name: create mcmap web directory
+  file: path=/var/www/mcmap/map owner=minecraft group=minecraft state=directory
+
+- name: create mcmapfull web directory
+  file: path=/var/www/mcmapfull/map owner=minecraft group=minecraft state=directory
+
+- name: Configure nginx server
+  copy: src=nginx.conf dest=/etc/nginx/sites-enabled/mcmap
+
+- name: Add full render configuration
+  copy: src=nginx-full.conf dest=/etc/nginx/sites-enabled/mcmapfull
+  notify:
+    - restart nginx
