@@ -10,18 +10,17 @@
         name: "{{ webconfig.node_name }}-{{ web_opts.region }}-%02d"
         exact_count: yes
         flavor: Performance1-8
-        image: ubuntu-1604-lts-xenial-xerus-pvhvm
+        image: 81059a34-acfb-4e27-b8ba-a7aead6c7963
+#        image: ubuntu-1604-lts-xenial-xerus-pvhvm
         region: "{{ web_opts.region }}"
         wait: yes
         state: present
         group: web
         count: "{{ web_opts.node_count }}"
-        files:
-           /root/.ssh/authorized_keys: ~/.ssh/id_rsa.pub
+        key_name: dev
         networks:
            - private
            - public
-      with_dict: web_opts
       register: rax
 
     - name: Add created servers to Minecraft web group

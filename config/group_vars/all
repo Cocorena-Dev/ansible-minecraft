@@ -1,9 +1,9 @@
 ---
 
 minecraft:
-  version: "1.11.2"
-  java_max_heap_size: '512M'
-  java_max_heap_newsize: '100M'
+  version: "1.12.1"
+  java_min: "1024M"
+  java_max: "1024M"
   dependencies:
     - 'openjdk-8-jre'
     - 'openjdk-8-jdk'

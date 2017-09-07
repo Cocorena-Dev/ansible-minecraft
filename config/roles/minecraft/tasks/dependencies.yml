@@ -2,7 +2,7 @@
 - name: Install JDK & JRE
   apt: pkg={{ item }} state=installed
   register: jdk_installed
-  with_items: minecraft.dependencies
+  with_items: "{{ minecraft.dependencies }}"
   tags:
     - packages
     - dependencies

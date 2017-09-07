@@ -5,9 +5,9 @@ Description=Minecraft Server
 WorkingDirectory=/home/minecraft/app
 User=minecraft
 
-ExecStart=/usr/bin/java -server -XX:ParallelGCThreads=4 -XX:+AggressiveOpts -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx2048M -Xms2048M -jar /home/minecraft/app/minecraft_server.{{ minecraft.version }}.jar nogui
+ExecStart=/usr/bin/java -server -XX:ParallelGCThreads=2 -XX:+AggressiveOpts -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx{{ minecraft.java_min }} -Xms{{ minecraft.java_max }} -jar /home/minecraft/app/minecraft_server.{{ minecraft.version }}.jar nogui --noconsole
 
-ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx2048M -Xms2048M -jar /home/minecraft/app/minecraft_server.{{ minecraft.version }}.jar nogui
+ExecReload=/bin/kill -HUP $MAINPID; /usr/bin/java -server -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Xmx{{ minecraft.java_min }} -Xms{{ minecraft.java_max }} -jar /home/minecraft/app/minecraft_server.{{ minecraft.version }}.jar nogui --noconsole
 
 ExecStop=/bin/kill -HUP $MAINPID
 RestartSec=10s

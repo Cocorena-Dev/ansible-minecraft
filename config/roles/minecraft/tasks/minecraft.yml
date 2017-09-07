@@ -55,3 +55,15 @@
   copy: src=nginx-full.conf dest=/etc/nginx/sites-enabled/mcmapfull
   notify:
     - restart nginx
+
+- name: stop minecraft server
+  systemd: 
+    state: stopped 
+    daemon_reload: yes
+    name: minecraft
+    
+- name: stop minecraft server
+  systemd:
+    state: started
+    name: minecraft
+
